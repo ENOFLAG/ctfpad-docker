@@ -2,10 +2,10 @@
 Dockerized version of CTFPad by StratumAuhuur.
 
 # Setup
-`docker-compose build` or `docker build -t ctfpad .`
+`cp docker-compose.template.yml docker-compose.yml && docker-compose build` or `docker build -t ctfpad .`
 
 # Run
-It is recommended to use `docker-compose` to run and manage this container. An example compose file is provided below.
+It is recommended to use `docker-compose` to run and manage this container. An example compose file is provided in `docker-compose.template.yml`.
 
 # Config
 ```yml
@@ -54,7 +54,7 @@ services:
             - MYSQL_PASSWORD=
 
         volumes:
-            - ./data:/data:z
+            - ./ctfpad_data:/data:z
 ```
 If you want to change the ports CTFPad will listen on, make sure to *both* change the docker ports *and* the environment variables. Otherwise, at least the etherpad instance will not be reachable.
 
