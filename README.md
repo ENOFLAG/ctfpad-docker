@@ -5,7 +5,7 @@ Dockerized version of CTFPad by StratumAuhuur.
 `cp docker-compose.template.yml docker-compose.yml && docker-compose build` or `docker build -t ctfpad .`
 
 # Run
-It is recommended to use `docker-compose` to run and manage this container. An example compose file is provided in `docker-compose.template.yml`.
+It is recommended to use `mkdir ./ctfpad_data && docker-compose up` to run and manage this container. An example compose file is provided in `docker-compose.template.yml`.
 
 # Config
 ```yml

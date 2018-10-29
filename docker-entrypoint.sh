@@ -42,7 +42,6 @@ _configure_etherpad() {
     _pwd="/ctfpad/ctfpad/etherpad-lite"
     cp "$_pwd/settings.template.json" "$_pwd/settings.json"
     _apply_envs "$_pwd/settings.json" "DATABASE_CONNECTION_STRING" "ETHERPAD_INTERNAL_PORT"
-    chown ctfpad:ctfpad "$_pwd/settings.json"
 }
 
 _configure_ctfpad() {
@@ -50,7 +49,6 @@ _configure_ctfpad() {
     _pwd="/ctfpad/ctfpad/"
     cp "$_pwd/config.template.json" "$_pwd/config.json"
     _apply_envs "$_pwd/config.json" CTFPAD_PORT ETHERPAD_PORT ETHERPAD_INTERNAL_PORT CTFPAD_SSL_KEY_FILE CTFPAD_SSL_CERT_FILE CTFPAD_AUTHKEY CTFPAD_USE_HTTPS CTFPAD_PROXY_USE_HTTPS
-    chown ctfpad:ctfpad "$_pwd/config.json"
 }
 
 CTFPAD_PORT=${CTFPAD_PORT:="4242"}
@@ -82,7 +80,6 @@ if [ ! -f /ctfpad/ctfpad/ctfpad.sqlite ]; then
     echo "symlinking ctfpad.sqlite to ctfpad directory"
     rm -f /ctfpad/ctfpad/ctfpad.sqlite
     ln -s /data/ctfpad.sqlite /ctfpad/ctfpad/ctfpad.sqlite
-    chown -h ctfpad:ctfpad /ctfpad/ctfpad/ctfpad.sqlite
 fi
 
 # create uploads directory
@@ -91,7 +88,6 @@ if [ ! -d /ctfpad/ctfpad/uploads ]; then
     mkdir -p /data/uploads
     rm -f /ctfpad/ctfpad/uploads
     ln -s /data/uploads /ctfpad/ctfpad/uploads
-    chown -h ctfpad:ctfpad /ctfpad/ctfpad/uploads
 fi
 
 # create ssl cert
@@ -112,8 +108,6 @@ fi
 if [ ! -f /ctfpad/ctfpad/config.json ]; then
     _configure_ctfpad
 fi
-
-chown ctfpad:ctfpad -R /data
 
 export NODE_ENV=production
 
